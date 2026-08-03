@@ -1,0 +1,28 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = crlf
+charset = utf-8
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+# JavaScript, TypeScript, and JSON specific (Standard Playwright stack)
+[{*.js,*.jsx,*.ts,*.tsx,*.json,package.json}]
+indent_style = space
+indent_size = 2
+
+# Playwright HTML reports and configuration files
+[{*.html,*.yaml,*.yml}]
+indent_style = space
+indent_size = 2
+
+# Markdown documentation files (allow trailing whitespace for line breaks if needed)
+[*.md]
+trim_trailing_whitespace = false
+insert_final_newline = true
+indent_size = 2
