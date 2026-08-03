@@ -30,6 +30,14 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+    //Set always use headless mode to false, so that we can see the browser UI during test execution
+    headless: false,
+
+    // Set slow motion to 100ms, so that we can see the test execution in slow motion
+    launchOptions: {
+      slowMo: 100,
+    },
   },
 
   /* Configure projects for major browsers */
