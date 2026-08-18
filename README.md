@@ -8,14 +8,16 @@ To control chromw browser with manually logined session, Open Google Chrome as:
 & "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 --user-data-dir=$(Resolve-Path .\chrome_debug_profile)
 ```
 
-Then goto the URL : `chrome://inspect/#remote-debugging`, turn on "Allow remote debugging for this browser instance"
-
-Then open the <http://127.0.0.1:9222/json/version>, copy the json value of `"webSocketDebuggerUrl"` key
+Then goto the URL : [`chrome://inspect/#remote-debugging`](chrome://inspect/#remote-debugging), turn on "Allow remote debugging for this browser instance"
 
 
 ## Playwright CLI to control browser
 
-Install [Plwywright-CLI](https://playwright.dev/agent-cli/installation), and then run `playwright-cli install --skills agents` to make sure current project folder can use Playwright-CLI.
+Install [Plwywright-CLI](https://playwright.dev/agent-cli/installation),
+
+(Besure use global install: `npm install -g @playwright/cli@latest` )
+
+ and then run `playwright-cli install --skills agents` to make sure current project folder can use Playwright-CLI.
 
 1. Attach the Google Chrome browser with remote debug mode:
    ```powershell
@@ -25,3 +27,4 @@ Install [Plwywright-CLI](https://playwright.dev/agent-cli/installation), and the
    ```powershell
    playwright-cli tab-new  https://demo.playwright.dev/todomvc
    ```
+3. Use [`tracing-start` & `tracing-stop` sub commands](https://playwright.dev/agent-cli/commands/tracing) to record tracing of human interaction in web page using Playwright CLI.
