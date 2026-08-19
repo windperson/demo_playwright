@@ -28,3 +28,17 @@ Install [Plwywright-CLI](https://playwright.dev/agent-cli/installation),
    playwright-cli tab-new  https://demo.playwright.dev/todomvc
    ```
 3. Use [`tracing-start` & `tracing-stop` sub commands](https://playwright.dev/agent-cli/commands/tracing) to record tracing of human interaction in web page using Playwright CLI.
+
+## True Remote Google Chrome CDP attach for Playwright-CLI
+
+In order to attach the Google Chrome browser running on the other remote machine, you can use the `cdn_proxy.ts` script to initiate the CDP proxy server (listen on PORT:**9223** to prevent TCP port conflict):
+
+```sh
+npm run start:cdp_proxy
+```
+
+Once the CDP proxy server is running, and make sure the remote machine has enable _**In bound**_ **TCP port 9223** in its firewall setting, you can attach to the browser on remote machine via:
+
+```sh
+ playwright-cli attach --cdp=http://<ip address of remote machine>:9223   
+```
