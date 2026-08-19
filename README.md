@@ -29,16 +29,29 @@ Install [Plwywright-CLI](https://playwright.dev/agent-cli/installation),
    ```
 3. Use [`tracing-start` & `tracing-stop` sub commands](https://playwright.dev/agent-cli/commands/tracing) to record tracing of human interaction in web page using Playwright CLI.
 
+**NOTE:**  
+When using PowerShell and upon invoke `playwright-cli mousewheel` command for situation needs to input minus number, us [***end-of-parameters token***](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_parsing?view=powershell-7.6#the-end-of-parameters-token) to escape the minus sign(**-**), for example:  
+
+```PowerShell
+playwright-cli mousewheel -- 0 -- -1000
+```
+
 ## True Remote Google Chrome CDP attach for Playwright-CLI
 
 In order to attach the Google Chrome browser running on the other remote machine, you can use the `cdn_proxy.ts` script to initiate the CDP proxy server (listen on PORT:**9223** to prevent TCP port conflict):
 
-```sh
-npm run start:cdp_proxy
-```
+1. Config Remote machine has enable _**In-bound**_ **TCP port 9223** in its firewall setting  
+   (In Windows, use ["Windows Defender Firewall with Advandced Security(**wf.msc**)"](https://learn.microsoft.com/windows/security/operating-system-security/network-security/windows-firewall/tools) )
 
-Once the CDP proxy server is running, and make sure the remote machine has enable _**In bound**_ **TCP port 9223** in its firewall setting, you can attach to the browser on remote machine via:
+2. Run:
+    ```sh
+    npm run start:cdp_proxy
+    ```
+
+You can use PowerShell command: `Test-NetConntection -ComputerName <Remote Machine IP> -Port 9223` to verify it can connect.
+
+Once the CDP proxy server is running, and , you can attach to the browser on remote machine:
 
 ```sh
- playwright-cli attach --cdp=http://<ip address of remote machine>:9223   
+playwright-cli attach --cdp=http://<Remote Machine IP>:9223   
 ```
